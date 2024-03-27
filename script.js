@@ -127,32 +127,41 @@ document.addEventListener('DOMContentLoaded', (event) => {
   updateTickMarks();
 
 function handleDownload() {
-  // Logic for downloading the customized image
   let tempCanvas = document.createElement('canvas');
   let tempCtx = tempCanvas.getContext('2d');
 
   let originalImage = new Image();
   originalImage.onload = function() {
+    // Set the temporary canvas size to the original image size
     tempCanvas.width = this.naturalWidth;
     tempCanvas.height = this.naturalHeight;
 
+    // Draw the original image on the temporary canvas
     tempCtx.drawImage(originalImage, 0, 0, tempCanvas.width, tempCanvas.height);
-    // Adjust font size relative to the original image size
-    let scaleRatioWidth = tempCanvas.width / canvas.width;
-    let scaleRatioHeight = tempCanvas.height / canvas.height;
-    let adjustedFontSize = fontSize * Math.min(scaleRatioWidth, scaleRatioHeight); // Choose the smaller scale ratio to maintain aspect ratio
+
+    // Calculate the scale ratios
+    let scaleX = tempCanvas.width / canvas.width;
+    let scaleY = tempCanvas.height / canvas.height;
+
+    // Adjust the font size based on the scale ratio
+    // Assuming the font size should scale similarly in both dimensions, you can use either scaleX or scaleY.
+    // Using the average of scaleX and scaleY to maintain the relative aspect ratio of the text size to the image.
+    let adjustedFontSize = fontSize * ((scaleX + scaleY) / 2);
     tempCtx.font = `${adjustedFontSize}px ${fontFamily}`;
     tempCtx.fillStyle = color;
     tempCtx.textAlign = 'center';
     tempCtx.textBaseline = 'middle';
 
-    // Adjust text position relative to the original image size
-    let scaledX = tempCanvas.width / 2;
-    // If your text is always positioned in a specific way relative to the bottom of the canvas, you might need to adjust this calculation.
-    let scaledY = tempCanvas.height * (textPosition.y / canvas.height);
+    // Calculate the adjusted position for the text
+    // Since we're maintaining the aspect ratio, you can use either scaleX or scaleY to adjust the text's position.
+    // This example uses scaleY for Y to ensure vertical alignment is consistent with your original design.
+    let scaledX = tempCanvas.width / 2; // Centered horizontally
+    let scaledY = textPosition.y * scaleY; // Adjusted vertically based on the scale
 
+    // Draw the text on the temporary canvas at the adjusted position
     tempCtx.fillText(name, scaledX, scaledY);
 
+    // Create a link and trigger the download
     let link = document.createElement('a');
     link.download = 'customized-image.png';
     link.href = tempCanvas.toDataURL();
@@ -160,6 +169,7 @@ function handleDownload() {
   };
   originalImage.src = currentImageSrc;
 }
+
 
 
   document.getElementById('downloadBtn').addEventListener('click', handleDownload);
