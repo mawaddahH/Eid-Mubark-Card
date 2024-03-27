@@ -1,0 +1,171 @@
+@font-face {
+  font-family: 'EidFont';
+  src: url('fontAli.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding-top: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.parent-container {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  flex-direction: row-reverse; /* Layout items starting from right to left */
+  justify-content: flex-start; /* Align items to the right */
+  gap: 10px; /* Space between items */
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.image-container, .controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#imageCanvas {
+  border: 1px solid #ccc; /* Optional: adds a border around the canvas */
+}
+
+input[type="text"] , #nameInput {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: transparent; /* Ensures background is transparent by default */
+  position: relative; /* Necessary for the focus effect positioning */
+  text-align: center; /* Centers the text and cursor within the input */
+}
+
+input[type="text"]:focus, #nameInput:focus {
+  outline: none; /* Removes the default focus outline */
+  background-color: #ededed; /* Only changes the background of the input, not the whole page */
+}
+
+
+button {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 20px;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#imagePicker, #colorPicker {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  flex-direction: row-reverse; /* Layout items starting from right to left */
+  justify-content: flex-start; /* Align items to the right */
+  gap: 10px; /* Space between items */
+}
+
+#imagePicker label, #colorPicker label {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.color-choice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+#colorPicker input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+
+#colorPicker .tick-mark {
+  display: none; /* Only visible when its radio is checked, via JavaScript or additional CSS */
+}
+
+#colorPicker input[type="radio"]:checked + .tick-mark {
+  display: block;
+  color: #fff; /* Ensure visibility against the color choice */
+  position: absolute;
+  font-size: 18px;
+}
+
+
+
+
+span:not(.tick-mark) {
+  color: #333; /* Darker font color for better readability */
+  font-weight: bold; /* Makes the instruction text stand out */
+  margin-bottom: 15px; /* Increases space between the title and options */
+}
+
+
+
+/* Updated section */
+#imagePicker label {
+  background-color: #fff; /* Default background color */
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd; /* Default border color */
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Highlight this to ensure it affects your labels correctly */
+#imagePicker label:hover,
+#imagePicker input[type="radio"]:checked + label {
+  background-color: #e8e8e8; /* Hover state and selected state share the same background */
+}
+
+#imagePicker input[type="radio"]:checked + label {
+  background-color: #d1e8ff; /* Background color for selected radio button */
+  border-color: #b6d4f2; /* Border color for selected radio button */
+}
+
+/* Additional styling for visual feedback */
+#imagePicker input[type="radio"]:focus + label {
+  outline: 2px solid blue; /* or any color of choice, for accessibility */
+}
+
+/* Hiding the radio input visually but remaining accessible */
+#imagePicker input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Customization</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Image Shape Picker -->
+  <div id="imagePicker">
+    <span>اختر حجم الصورة</span>
+    <!-- Radio Button for Square Shape -->
+    <input type="radio" id="shapeSquare" name="imageShape" value="square">
+    <label for="shapeSquare">صورة مربعة</label>
+    <!-- Radio Button for Rectangle Shape -->
+    <input type="radio" id="shapeRectangle" name="imageShape" value="rectangle">
+    <label for="shapeRectangle">صورة طولية</label>
+  </div>
+
+  <!-- Image Display Container -->
+  <div class="image-container">
+    <canvas id="imageCanvas" width="500" height="500"></canvas>
+  </div>
+
+  <!-- Text and Color Controls -->
+  <div class="controls">
+    <!-- Name Input -->
+    <div class="parent-container">
+      <span>ادخل اسمك</span>
+      <div class="input-group">
+        <input type="text" id="nameInput" class="effect-13" placeholder="اكتب اسمك">
+        <span class="focus-bg"></span>
+      </div>
+    </div>
+
+    <!-- Text Color Picker -->
+    <div id="colorPicker">
+      <span>اختر لون النص</span>
+      <label for="color1" class="color-choice" style="background-color: #C06864;">
+        <input type="radio" id="color1" name="textColor" value="#C06864" checked>
+        <span class="tick-mark">✓</span>
+      </label>
+      <label for="color2" class="color-choice" style="background-color: #777773;">
+        <input type="radio" id="color2" name="textColor" value="#777773">
+        <span class="tick-mark">✓</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Download Button -->
+    <a href="تهنئة-العيد-طولي.png" download="testDownload.png">Test Direct Download</a>
+  <button id="downloadBtn">تحميل الصورة</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
