@@ -126,35 +126,41 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // Initial update of tick marks
   updateTickMarks();
 
-  function handleDownload() {
-    // Logic for downloading the customized image
-    console.log("Download button clicked");
-    let tempCanvas = document.createElement('canvas');
-    let tempCtx = tempCanvas.getContext('2d');
+function handleDownload() {
+  // Logic for downloading the customized image
+  let tempCanvas = document.createElement('canvas');
+  let tempCtx = tempCanvas.getContext('2d');
 
-    let originalImage = new Image();
-    originalImage.onload = function() {
-      tempCanvas.width = this.naturalWidth;
-      tempCanvas.height = this.naturalHeight;
+  let originalImage = new Image();
+  originalImage.onload = function() {
+    tempCanvas.width = this.naturalWidth;
+    tempCanvas.height = this.naturalHeight;
 
-      tempCtx.drawImage(originalImage, 0, 0, tempCanvas.width, tempCanvas.height);
-      tempCtx.font = `${fontSize}px ${fontFamily}`;
-      tempCtx.fillStyle = color;
-      tempCtx.textAlign = 'center';
-      tempCtx.textBaseline = 'middle';
+    tempCtx.drawImage(originalImage, 0, 0, tempCanvas.width, tempCanvas.height);
+    // Adjust font size relative to the original image size
+    let scaleRatioWidth = tempCanvas.width / canvas.width;
+    let scaleRatioHeight = tempCanvas.height / canvas.height;
+    let adjustedFontSize = fontSize * Math.min(scaleRatioWidth, scaleRatioHeight); // Choose the smaller scale ratio to maintain aspect ratio
+    tempCtx.font = `${adjustedFontSize}px ${fontFamily}`;
+    tempCtx.fillStyle = color;
+    tempCtx.textAlign = 'center';
+    tempCtx.textBaseline = 'middle';
 
-      let scaledX = tempCanvas.width / 2;
-      let scaledY = tempCanvas.height / 2;
+    // Adjust text position relative to the original image size
+    let scaledX = tempCanvas.width / 2;
+    // If your text is always positioned in a specific way relative to the bottom of the canvas, you might need to adjust this calculation.
+    let scaledY = tempCanvas.height * (textPosition.y / canvas.height);
 
-      tempCtx.fillText(name, scaledX, scaledY);
+    tempCtx.fillText(name, scaledX, scaledY);
 
-      let link = document.createElement('a');
-      link.download = 'customized-image.png';
-      link.href = tempCanvas.toDataURL();
-      link.click();
-    };
-    originalImage.src = currentImageSrc;
-  }
+    let link = document.createElement('a');
+    link.download = 'customized-image.png';
+    link.href = tempCanvas.toDataURL();
+    link.click();
+  };
+  originalImage.src = currentImageSrc;
+}
+
 
   document.getElementById('downloadBtn').addEventListener('click', handleDownload);
 
