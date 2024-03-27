@@ -161,9 +161,20 @@ function handleDownload() {
     // Draw the text on the temporary canvas at the adjusted position
     tempCtx.fillText(name, scaledX, scaledY);
 
-    // Create a link and trigger the download
+    // Determine the image name based on the selected shape
+    let imageName;
+    if (currentImageSrc === imageSrcs.square) {
+      imageName = "customized-image-square.png";
+    } else if (currentImageSrc === imageSrcs.rectangle) {
+      imageName = "customized-image-rectangle.png";
+    } else {
+      // Fallback name if needed
+      imageName = "customized-image.png";
+    }
+
+    // Create a link and trigger the download with the determined image name
     let link = document.createElement('a');
-    link.download = 'EidCardByMWDH.png';
+    link.download = imageName; // Use the dynamically set name here
     link.href = tempCanvas.toDataURL();
     link.click();
   };
