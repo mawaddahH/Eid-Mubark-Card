@@ -163,7 +163,7 @@ function handleDownload() {
 
     // Create a link and trigger the download
     let link = document.createElement('a');
-    link.download = 'customized-image.png';
+    link.download = 'EidCardByMWDH.png';
     link.href = tempCanvas.toDataURL();
     link.click();
   };
