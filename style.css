@@ -13,6 +13,7 @@ body {
   padding-top: 20px;
   background-color: #fff;
   text-align: center; /* Center aligns the body content by default */
+  font-family: Arial;
 }
 
 /* Adjusting the alignment of text within divs */
