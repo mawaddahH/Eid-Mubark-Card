@@ -40,16 +40,6 @@ To use or contribute to the Eid Greeting Card Generator, follow these steps:
 3. **Preview**: View your card in real-time as you make changes.
 4. **Download**: Download your customized Eid card for sharing.
 
-## Acknowledgments
-
-This project was designed for the Maweiza Association with the aim of enriching the digital celebration of Eid. A special thanks to the Maweiza Association for their support and inspiration throughout the development process.
-
-## Contributions
-
-Contributions are welcome! If you have ideas for new features or improvements, please open an issue or submit a pull request.
-
-Thank you for your interest in the Eid Greeting Card Generator. We hope this tool adds a touch of personalization and joy to your Eid celebrations.
-
 ## Important Note on Download Functionality
 
 Please be aware that the "Download" button functionality in the Eid Greeting Card Generator might encounter issues when the application is run locally on some personal devices. This is due to security restrictions in browsers that limit access to the local file system and certain features that are dependent on being served over a HTTP/HTTPS protocol.
@@ -69,3 +59,15 @@ Please be aware that the "Download" button functionality in the Eid Greeting Car
 ### Further Assistance:
 
 If you encounter any issues with the download functionality or any other aspect of the application, please feel free to open an issue in the GitHub repository. We welcome your feedback and contributions to improve the Eid Greeting Card Generator and ensure it works seamlessly for all users.
+
+
+
+## Acknowledgments
+
+This project was designed for the Maweiza Association with the aim of enriching the digital celebration of Eid. A special thanks to the Maweiza Association for their support and inspiration throughout the development process.
+
+## Contributions
+
+Contributions are welcome! If you have ideas for new features or improvements, please open an issue or submit a pull request.
+
+Thank you for your interest in the Eid Greeting Card Generator. We hope this tool adds a touch of personalization and joy to your Eid celebrations.
