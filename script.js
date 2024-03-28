@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let currentImageSrc = imageSrcs.square; // Start with square image by default
   let name = 'اكتب اسمك'; // Default text
   let fontSize; // Font size will be updated dynamically
-  let squareFontSize = 25; // Font size for square images
-  let rectangleFontSize = 18; // Font size for rectangle images
+  let squareFontSize = 20; // Font size for square images
+  let rectangleFontSize = 15; // Font size for rectangle images
   let fontFamily = 'EidFont'; // Font family for the text
   let color = '#C06864'; // Text color
   let textPosition = { x: 0, y: 0 }; // Position of the text, to be updated
@@ -56,9 +56,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
       canvas.height = containerMaxSize;
     }
 
-    // Adjust font size relative to canvas size
-    fontSize = (canvas.width > canvas.height ? canvas.height : canvas.width) / 20;
+    // Adjust font size relative to canvas size differently for square and rectangle images
+    if (currentImageSrc === imageSrcs.square) {
+      // For square images, use a specific font size adjustment
+      fontSize = squareFontSize; // Use the pre-defined squareFontSize
+    } else if (currentImageSrc === imageSrcs.rectangle) {
+      // For rectangle images, use a different font size adjustment
+      fontSize = rectangleFontSize; // Use the pre-defined rectangleFontSize
+    } else {
+      // Default font size adjustment in case it's neither square nor rectangle
+      // This might not be necessary if you only have square and rectangle images
+      fontSize = (canvas.width > canvas.height ? canvas.height : canvas.width) / 15;
+    }
   }
+
 
 
   // Set the text position based on the image shape
