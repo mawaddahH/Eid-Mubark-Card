@@ -33,24 +33,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   function updateCanvasSize() {
-    if (currentImageSrc === imageSrcs.square) {
-      canvas.width = 500;
-      canvas.height = 500;
-      fontSize = squareFontSize;
-    } else {
-      canvas.width = 300;
-      canvas.height = 500;
-      fontSize = rectangleFontSize;
-    }
+      let imgRatio = image.naturalWidth / image.naturalHeight;
+      let containerMaxSize = 400; // Maximum size for both width and height
+
+      if (imgRatio > 1) { // Image is wider than tall (landscape)
+          canvas.width = containerMaxSize;
+          canvas.height = containerMaxSize / imgRatio;
+      } else if (imgRatio < 1) { // Image is taller than wide (portrait)
+          canvas.width = containerMaxSize * imgRatio;
+          canvas.height = containerMaxSize;
+      } else { // Image is square
+          canvas.width = containerMaxSize;
+          canvas.height = containerMaxSize;
+      }
+
+      // Adjust the fontSize based on the new canvas size
+      fontSize = (canvas.width > canvas.height ? canvas.height : canvas.width) / 20;
   }
+
 
   function setTextPosition() {
     if (currentImageSrc === imageSrcs.square) {
       textPosition.x = canvas.width / 2;
-      textPosition.y = canvas.height / 2 + 150;
+      textPosition.y = canvas.height / 2 + 115;
     } else {
       textPosition.x = canvas.width / 2;
-      textPosition.y = canvas.height - 125;
+      textPosition.y = canvas.height - 110;
     }
   }
 
