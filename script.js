@@ -72,16 +72,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-  // Set the text position based on the image shape
-  function setTextPosition() {
-    if (currentImageSrc === imageSrcs.square) {
-      textPosition.x = canvas.width / 2;
-      textPosition.y = canvas.height / 2 + 120;
-    } else {
-      textPosition.x = canvas.width / 2;
-      textPosition.y = canvas.height - 100;
-    }
+  // // Set the text position based on the image shape
+  // function setTextPosition() {
+  //   if (currentImageSrc === imageSrcs.square) {
+  //     textPosition.x = canvas.width / 2;
+  //     textPosition.y = canvas.height / 2 + 120;
+  //   } else {
+  //     textPosition.x = canvas.width / 2;
+  //     textPosition.y = canvas.height - 100;
+  //   }
+  // }
+
+  // Set the text position based on the image shape and canvas size
+function setTextPosition() {
+  // Example of using relative positioning for both square and rectangle images
+  // Adjust these values as per your requirements to get the desired positioning
+  const relativeYPositionSquare = 0.8; // Position the text at 80% of the canvas height for square images
+  const relativeYPositionRectangle = 0.75; // Position the text at 90% of the canvas height for rectangle images
+
+  textPosition.x = canvas.width / 2; // Center text horizontally
+
+  // Adjust text position vertically based on image shape
+  if (currentImageSrc === imageSrcs.square) {
+    textPosition.y = canvas.height * relativeYPositionSquare;
+  } else {
+    textPosition.y = canvas.height * relativeYPositionRectangle;
   }
+}
 
   // Draw the image and text on the canvas
   function updateText() {
