@@ -76,10 +76,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   function setTextPosition() {
     if (currentImageSrc === imageSrcs.square) {
       textPosition.x = canvas.width / 2;
-      textPosition.y = canvas.height / 2 + 115;
+      textPosition.y = canvas.height / 2 + 120;
     } else {
       textPosition.x = canvas.width / 2;
-      textPosition.y = canvas.height - 110;
+      textPosition.y = canvas.height - 100;
     }
   }
 
