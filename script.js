@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let squareFontSize = 20; // Font size for square images
   let rectangleFontSize = 15; // Font size for rectangle images
   let fontFamily = 'EidFont'; // Font family for the text
-  let color = '#C16964'; // Text color
+  let color = document.querySelector('input[name="textColor"]:checked').value;; // Text color
   let textPosition = { x: 0, y: 0 }; // Position of the text, to be updated
 
   // Load the default image
@@ -99,6 +99,7 @@ function setTextPosition() {
     textPosition.y = canvas.height * relativeYPositionRectangle;
   }
 }
+
 
   // Draw the image and text on the canvas
   function updateText() {
@@ -248,8 +249,11 @@ function showDownloadSuccessModal() {
 // Initially call updateRadioSelection to set the correct state at load
 updateRadioSelection();
 
-// Initial update
+// Initial update of tick marks to reflect the default color
 updateTickMarks();
+
+// Update text for the first time
+updateText();
 
   document.getElementById('downloadBtn').addEventListener('click', handleDownload);
 
