@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let squareFontSize = 20; // Font size for square images
   let rectangleFontSize = 15; // Font size for rectangle images
   let fontFamily = 'EidFont'; // Font family for the text
-  let color = '#C06864'; // Text color
+  let color = '#892525'; // Text color
   let textPosition = { x: 0, y: 0 }; // Position of the text, to be updated
 
   // Load the default image
