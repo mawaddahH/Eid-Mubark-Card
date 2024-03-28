@@ -11,10 +11,24 @@ body {
   align-items: center;
   margin: 0;
   padding-top: 20px;
-  font-family: 'EidFont';
-  src: url('fontAli.ttf') format('truetype');
   background-color: #fff;
+  text-align: center; /* Center aligns the body content by default */
 }
+
+/* Adjusting the alignment of text within divs */
+#imagePicker, #colorPicker, .parent-container {
+  text-align: right; /* Aligns text to the right */
+}
+
+.image-container, .controls, button {
+  align-items: flex-start; /* Align items to the start of the flex container (right side for RTL languages) */
+  width: 100%; /* Ensures that the container takes full width to respect text alignment */
+}
+
+.controls {
+  align-items: flex-start; /* Aligns child elements (controls) to the right */
+}
+
 
 .parent-container {
   display: flex;
@@ -36,6 +50,8 @@ body {
   justify-content: center;
   margin-top: 20px;
 }
+
+
 
 #imageCanvas {
   border: 1px solid #ccc; /* Optional: adds a border around the canvas */
@@ -77,6 +93,7 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  width: 300px;
 }
 
 button:hover {
@@ -181,8 +198,6 @@ span:not(.tick-mark) {
   height: 100%;
   overflow: auto;
   background-color: rgba(0,0,0,0.4);
-  font-family: 'EidFont';
-  src: url('fontAli.ttf') format('truetype');
 }
 
 .modal-content {
