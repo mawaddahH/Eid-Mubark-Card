@@ -9,7 +9,7 @@ This application allows users to select from a variety of design templates, inpu
 ## Key Features
 
 - **Template Selection**: Users can choose from multiple design templates tailored for Eid celebrations.
-- **Custom Greetings**: Add personalized messages in Arabic to make each card unique.
+- **Custom Greetings**: Add your Name in Arabic.
 - **Instant Preview**: See your card come to life in real-time as you customize it.
 - **Responsive Design**: Crafted to provide a seamless experience across desktop and mobile devices.
 - **Downloadable Cards**: Easily download the customized card for sharing digitally or printing.
