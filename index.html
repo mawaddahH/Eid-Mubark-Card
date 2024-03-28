@@ -8,36 +8,45 @@
 </head>
 <body>
 
+  <!-- Greeting Card Title Container -->
+  <div class="image-container">
+    <span>بطاقة تهنئة لكادر جمعية موعظة 2024</span>
+  </div>
 
   <!-- Image Display Container -->
+  <!-- This is where the customized image will be shown on the canvas -->
   <div class="image-container">
     <canvas id="imageCanvas" width="500" height="500"></canvas>
   </div>
 
+  <!-- Image Shape Picker Section -->
+  <!-- Users can select the shape of the image they want to customize -->
+  <div id="imagePicker">
+    <span>اختر حجم الصورة</span>
 
-    <!-- Image Shape Picker -->
-    <div id="imagePicker">
-      <span>اختر حجم الصورة</span>
-      <!-- Radio Button for Square Shape -->
-      <input type="radio" id="shapeSquare" name="imageShape" value="square">
-      <label for="shapeSquare">مربع</label>
-      <!-- Radio Button for Rectangle Shape -->
-      <input type="radio" id="shapeRectangle" name="imageShape" value="rectangle">
-      <label for="shapeRectangle">مستطيل</label>
-    </div>
+    <!-- Option for Square Shape -->
+    <input type="radio" id="shapeSquare" name="imageShape" value="square">
+    <label for="shapeSquare">مربع</label>
 
-  <!-- Text and Color Controls -->
+    <!-- Option for Rectangle Shape -->
+    <input type="radio" id="shapeRectangle" name="imageShape" value="rectangle">
+    <label for="shapeRectangle">مستطيل</label>
+  </div>
+
+  <!-- Text and Color Controls Section -->
   <div class="controls">
-    <!-- Name Input -->
+
+    <!-- Input Field for Custom Text -->
+    <!-- Users can enter text to be displayed on the image -->
     <div class="parent-container">
       <span>ادخل النص</span>
       <div class="input-group">
         <input type="text" id="nameInput" class="effect-13" placeholder="اكتب اسمك">
-        <span class="focus-bg"></span>
       </div>
     </div>
 
     <!-- Text Color Picker -->
+    <!-- Users can select the color of the text to be displayed on the image -->
     <div id="colorPicker">
       <span>اختر لون النص</span>
       <label for="color1" class="color-choice" style="background-color: #C06864;">
@@ -52,17 +61,18 @@
   </div>
 
   <!-- Download Button -->
+  <!-- This button is used to download the customized image -->
   <button id="downloadBtn">تنزيل الصورة</button>
 
-  <!-- Download Success Modal -->
-<div id="downloadSuccessModal" class="modal">
-  <div class="modal-content">
-    <span class="close-button">×</span>
-    <p>تم تحميل الصورة بنجاح. </p>
-    <p>تصميم: مودة حنبلي</p>
+  <!-- Modal Popup for Download Success -->
+  <!-- This modal appears to confirm that the image has been successfully downloaded -->
+  <div id="downloadSuccessModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">×</span>
+      <p>تم تحميل الصورة بنجاح</p>
+      <p>تصميم: مودة حنبلي</p>
+    </div>
   </div>
-</div>
-
 
   <script src="script.js"></script>
 </body>
