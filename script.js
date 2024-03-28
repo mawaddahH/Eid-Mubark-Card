@@ -1,28 +1,35 @@
+// Listen for the DOM to be fully loaded before executing the script
 document.addEventListener('DOMContentLoaded', (event) => {
+  // Get the canvas element and its context
   const canvas = document.getElementById('imageCanvas');
   const ctx = canvas.getContext('2d');
+
+  // Define image sources for different shapes
   let imageSrcs = {
-    square: 'تهنئة-العيد-مربع.png', // Replace with your square image path
-    rectangle: 'تهنئة-العيد-طولي.png' // Replace with your rectangle image path
+    square: 'تهنئة-العيد-مربع.png', // Path to the square image
+    rectangle: 'تهنئة-العيد-طولي.png' // Path to the rectangle image
   };
-  let currentImageSrc = imageSrcs.square; // Default image
-  let name = 'اكتب اسمك';
-  let fontSize = 25; // This will be updated based on image shape
-  let squareFontSize = 25; // Font size for square image
-  let rectangleFontSize = 18; // Font size for rectangle image
-  let fontFamily = 'EidFont'; // Update to match your desired font
-  let color = '#C06864'; // Initial color
-  let textPosition = { x: 0, y: 0 }; // Updated to manage position
+
+  // Default image source and settings
+  let currentImageSrc = imageSrcs.square; // Start with square image by default
+  let name = 'اكتب اسمك'; // Default text
+  let fontSize; // Font size will be updated dynamically
+  let squareFontSize = 25; // Font size for square images
+  let rectangleFontSize = 18; // Font size for rectangle images
+  let fontFamily = 'EidFont'; // Font family for the text
+  let color = '#C06864'; // Text color
+  let textPosition = { x: 0, y: 0 }; // Position of the text, to be updated
 
   // Load the default image
   const image = new Image();
   loadImage(currentImageSrc);
 
-  // Ensure the correct radio button for the image shape is selected by default
+  // Set the default selection for the image shape radio button
   document.querySelector('input[value="square"]').checked = true;
-  // Initially call updateRadioSelection to set the correct state at load
+  // Update radio selection appearance
   updateRadioSelection();
 
+  // Load image function
   function loadImage(src) {
     image.onload = function() {
       updateCanvasSize();
@@ -32,26 +39,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
     image.src = src;
   }
 
+  // Update the canvas size based on the loaded image
   function updateCanvasSize() {
-      let imgRatio = image.naturalWidth / image.naturalHeight;
-      let containerMaxSize = 400; // Maximum size for both width and height
+    let imgRatio = image.naturalWidth / image.naturalHeight;
+    let containerMaxSize = 400; // Max canvas size
 
-      if (imgRatio > 1) { // Image is wider than tall (landscape)
-          canvas.width = containerMaxSize;
-          canvas.height = containerMaxSize / imgRatio;
-      } else if (imgRatio < 1) { // Image is taller than wide (portrait)
-          canvas.width = containerMaxSize * imgRatio;
-          canvas.height = containerMaxSize;
-      } else { // Image is square
-          canvas.width = containerMaxSize;
-          canvas.height = containerMaxSize;
-      }
+    // Adjust canvas dimensions based on image aspect ratio
+    if (imgRatio > 1) {
+      canvas.width = containerMaxSize;
+      canvas.height = containerMaxSize / imgRatio;
+    } else if (imgRatio < 1) {
+      canvas.width = containerMaxSize * imgRatio;
+      canvas.height = containerMaxSize;
+    } else {
+      canvas.width = containerMaxSize;
+      canvas.height = containerMaxSize;
+    }
 
-      // Adjust the fontSize based on the new canvas size
-      fontSize = (canvas.width > canvas.height ? canvas.height : canvas.width) / 20;
+    // Adjust font size relative to canvas size
+    fontSize = (canvas.width > canvas.height ? canvas.height : canvas.width) / 20;
   }
 
 
+  // Set the text position based on the image shape
   function setTextPosition() {
     if (currentImageSrc === imageSrcs.square) {
       textPosition.x = canvas.width / 2;
@@ -62,49 +72,51 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   }
 
+  // Draw the image and text on the canvas
   function updateText() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-    ctx.font = `${fontSize}px ${fontFamily}`;
-    ctx.fillStyle = color;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(name, textPosition.x, textPosition.y);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // Draw image
+    ctx.font = `${fontSize}px ${fontFamily}`; // Set font
+    ctx.fillStyle = color; // Set text color
+    ctx.textAlign = 'center'; // Center text horizontally
+    ctx.textBaseline = 'middle'; // Align text vertically
+    ctx.fillText(name, textPosition.x, textPosition.y); // Draw text
   }
 
-  // Event listeners for user inputs
+  // Event listener for text input
   document.getElementById('nameInput').addEventListener('input', function() {
-    name = this.value;
-    updateText();
+    name = this.value; // Update name with user input
+    updateText(); // Redraw text
   });
 
+  // Event listeners for text color change
   document.querySelectorAll('input[name="textColor"]').forEach((radio) => {
     radio.addEventListener('change', function() {
-      color = this.value;
-      updateText();
-      updateTickMarks();
+      color = this.value; // Update text color
+      updateText(); // Redraw text
+      updateTickMarks(); // Update UI for selected color
     });
   });
 
+  // Event listeners for image shape change
   document.querySelectorAll('input[name="imageShape"]').forEach((radio) => {
     radio.addEventListener('change', function() {
-      currentImageSrc = imageSrcs[this.value];
-      loadImage(currentImageSrc);
-      updateRadioSelection(); // Call this function to update the label styles
+      currentImageSrc = imageSrcs[this.value]; // Update image source
+      loadImage(currentImageSrc); // Load new image
+      updateRadioSelection(); // Update UI for selected shape
     });
   });
 
-  // This function updates the visual feedback for the image shape selection
+  // Update UI for image shape selection
   function updateRadioSelection() {
     document.querySelectorAll('#imagePicker input[type="radio"]').forEach(radio => {
       let label = document.querySelector(`label[for="${radio.id}"]`);
       if (radio.checked) {
-        label.style.backgroundColor = '#e8e8e8'; // Selected state
+        label.style.backgroundColor = '#e8e8e8'; // Highlight selected
         label.style.borderColor = '#ddd';
       } else {
-        // Reverting to default styles defined in CSS
-        label.style.backgroundColor = '#fff'; // Default background
-        label.style.borderColor = '#ddd'; // Default border
+        label.style.backgroundColor = '#fff'; // Revert others to default
+        label.style.borderColor = '#ddd';
       }
     });
   }
@@ -112,27 +124,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // Get all the radio buttons for text color
   const textColorRadios = document.querySelectorAll('input[type="radio"][name="textColor"]');
 
-  // Function to update tick marks for color selection based on the checked state
-  function updateTickMarks() {
-    document.querySelectorAll('input[name="textColor"]').forEach((radio) => {
-      // Since the .tick-mark is a sibling to the radio input, find the parent first (label), then find the .tick-mark within it
-      const tickMark = radio.parentElement.querySelector('.tick-mark');
-      if (radio.checked) {
-        tickMark.style.display = 'block';
-      } else {
-        tickMark.style.display = 'none';
-      }
-    });
-  }
+  // Update tick marks for selected text color
+   function updateTickMarks() {
+     document.querySelectorAll('input[name="textColor"]').forEach((radio) => {
+       const tickMark = radio.parentElement.querySelector('.tick-mark');
+       if (radio.checked) {
+         tickMark.style.display = 'block'; // Show tick mark
+       } else {
+         tickMark.style.display = 'none'; // Hide tick mark
+       }
+     });
+   }
 
 
   // Listen for changes on each radio button for text color
   textColorRadios.forEach((radio) => {
     radio.addEventListener('change', updateTickMarks);
   });
-
-  // Initial update of tick marks
-  updateTickMarks();
 
 function handleDownload() {
   let tempCanvas = document.createElement('canvas');
@@ -209,16 +217,15 @@ function showDownloadSuccessModal() {
   };
 }
 
+// Initially call updateRadioSelection to set the correct state at load
+updateRadioSelection();
 
+// Initial update
+updateTickMarks();
 
   document.getElementById('downloadBtn').addEventListener('click', handleDownload);
 
   // Load the specified font and then update the text
   document.fonts.load('10pt "EidFont"').then(updateText);
 
-  // Initially call updateRadioSelection to set the correct state at load
-  updateRadioSelection();
-
-  // Initial update
-  updateTickMarks();
 });
