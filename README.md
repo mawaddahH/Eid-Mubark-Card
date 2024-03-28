@@ -2,9 +2,31 @@
 
 Welcome to the Eid Greeting Card Generator, an Arabic interactive web application designed to enable users to create personalized Eid greeting cards. This project was specifically developed for the Maweiza Association and features Arabic design templates and greetings.
 
+## Table of Contents
+- [Introduction](#introduction)
+- [Try It Live](#try-it-live)
+- [Key Features](#key-features)
+- [Technical Details](#technical-details)
+- [Designed for Maweiza Association](#designed-for-maweiza-association)
+- [Getting Started](#getting-started)
+- [How to Use](#how-to-use)
+- [Important Note on Download Functionality](#important-note-on-download-functionality)
+- [Acknowledgments](#acknowledgments)
+- [Contributions](#contributions)
+
 ## Introduction
 
 This application allows users to select from a variety of design templates, input personalized messages, and customize their greeting cards for Eid celebrations. It aims to provide an easy-to-use platform for creating and sharing digital Eid cards with loved ones.
+
+## Try It Live
+
+Experience the Eid Greeting Card Generator right away by visiting the live application. Simply click on the link below to start creating your personalized Eid greeting cards:
+
+[**Eid Greeting Card Generator**](https://mawaddahh.github.io/Eid-Mubark-Card/)
+
+This link will take you to the hosted version of the application, where you can select design templates, customize your greeting, and preview your Eid card instantly. The website provides an intuitive and user-friendly interface, ensuring a seamless experience for users of all ages.
+
+Feel free to share this link with friends and family, and spread the joy of Eid with personalized greetings!
 
 ## Key Features
 
