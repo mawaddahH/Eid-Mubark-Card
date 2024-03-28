@@ -164,9 +164,9 @@ function handleDownload() {
     // Determine the image name based on the selected shape
     let imageName;
     if (currentImageSrc === imageSrcs.square) {
-      imageName = "customized-image-square.png";
+      imageName = "EidCardByMWDH-Square.png";
     } else if (currentImageSrc === imageSrcs.rectangle) {
-      imageName = "customized-image-rectangle.png";
+      imageName = "EidCardByMWDH-rectangle.png";
     } else {
       // Fallback name if needed
       imageName = "customized-image.png";
@@ -177,8 +177,28 @@ function handleDownload() {
     link.download = imageName; // Use the dynamically set name here
     link.href = tempCanvas.toDataURL();
     link.click();
+
+    // After initiating the download, show the success modal
+    showDownloadSuccessModal();
   };
   originalImage.src = currentImageSrc;
+}
+
+function showDownloadSuccessModal() {
+  const modal = document.getElementById('downloadSuccessModal');
+  modal.style.display = "block";
+
+  // When the user clicks on <span> (x), close the modal
+  document.querySelector('.close-button').onclick = function() {
+    modal.style.display = "none";
+  };
+
+  // Also close the modal if the user clicks anywhere outside of it
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
 }
 
 
