@@ -1,4 +1,4 @@
-# Eid Greeting Card Generator
+# Eid Fiter Card Generator
 
 Welcome to the Eid Greeting Card Generator, an Arabic interactive web application designed to enable users to create personalized Eid greeting cards. This project was specifically developed for the Maweiza Association and features Arabic design templates and greetings.
 
